@@ -43,9 +43,89 @@ class MovieScreenState extends ConsumerState<MovieScreen> {
       body: CustomScrollView(
         physics: const ClampingScrollPhysics(),
         slivers: [
-          _CustomSliverAppBar(movie: movie)
+          _CustomSliverAppBar(movie: movie),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) => _MovieDetails(movie: movie),
+              childCount: 1
+            ),
+          )
         ],
       )
+    );
+  }
+}
+
+class _MovieDetails extends StatelessWidget {
+
+  final Movie movie; 
+
+  const _MovieDetails({required this.movie});
+
+  @override
+  Widget build(BuildContext context) {
+
+    final size = MediaQuery.of(context).size;
+    final textStyles = Theme.of(context).textTheme;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              
+              //iamagen 
+              ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Image.network(
+                  movie.posterPath,
+                  width: size.width * 0.3,
+                ),
+              ),
+
+              const SizedBox(width: 10),
+
+              //descripcion
+              SizedBox(
+                width: (size.width - 40) * 0.7,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(movie.title, style: textStyles.titleLarge?.copyWith(fontWeight: FontWeight.bold)),
+                    Text(movie.overview),
+                  ],
+                ),
+              )
+
+            ],
+          ),
+        ),
+
+        //generos de la peliculas
+        Padding(
+          padding: const EdgeInsets.all(8),
+          child: Wrap(
+            children: [
+              ...movie.genreIds.map((gender) => Container(
+                margin: const EdgeInsets.only(right: 10),
+                child: Chip(
+                  label: Text(gender),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20)
+                  ),
+                ),
+              ))
+            ],
+          ),
+        ),
+
+        //actores de la peliula
+
+        const SizedBox(height: 100,)
+      ],
     );
   }
 }
@@ -89,7 +169,7 @@ class _CustomSliverAppBar extends StatelessWidget {
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
-                    stops: [0,7,1.0],
+                    stops: [0.7,1.0],
                     colors: [
                       Colors.transparent,
                       Colors.black87
@@ -104,9 +184,9 @@ class _CustomSliverAppBar extends StatelessWidget {
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topLeft,
-                    stops: [0,0,0.3],
+                    stops: [0.4,1.0],
                     colors: [
-                      Colors.black87,
+                      Colors.black26,
                       Colors.transparent,
                     ]
                   )
