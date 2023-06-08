@@ -160,13 +160,13 @@ class Genre {
 
 class ProductionCompany {
     final int id;
-    final dynamic logoPath;
+    final String? logoPath;
     final String name;
     final String originCountry;
 
     ProductionCompany({
         required this.id,
-        this.logoPath,
+        required this.logoPath,
         required this.name,
         required this.originCountry,
     });
