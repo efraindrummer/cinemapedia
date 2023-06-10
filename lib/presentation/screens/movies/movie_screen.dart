@@ -4,6 +4,7 @@ import 'package:cinemapedia/presentation/providers/movies/movie_info_provider.da
 import 'package:cinemapedia/presentation/providers/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 
 class MovieScreen extends ConsumerStatefulWidget {
@@ -176,7 +177,13 @@ class _ActorsByMovie extends ConsumerWidget {
                       actor.profilePath, 
                       height: 180, 
                       width: 135, 
-                      fit: BoxFit.cover
+                      fit: BoxFit.cover,
+                      loadingBuilder: (context, child, loadingProgress) {
+                        return GestureDetector(
+                          onTap: () => context.push('/person/${actor.id}'),
+                          child: FadeInRight(child: child)
+                        );
+                      },
                     ),
                   ),
                 ),
