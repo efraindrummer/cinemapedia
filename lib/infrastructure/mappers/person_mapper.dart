@@ -9,7 +9,7 @@ class PersonMapper {
     id: person.id, 
     name: person.name, 
     placeOfBirth: person.placeOfBirth, 
-    biography: person.biography, 
+    biography: person.biography!, 
     birthday: person.birthday!, 
     popularity: person.popularity, 
     alsoKnownAs: person.alsoKnownAs, 

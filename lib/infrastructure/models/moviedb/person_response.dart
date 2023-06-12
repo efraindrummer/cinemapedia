@@ -11,7 +11,7 @@ String personResposeToJson(PersonRespose data) => json.encode(data.toJson());
 class PersonRespose {
     final bool adult;
     final List<String> alsoKnownAs;
-    final String biography;
+    final String? biography;
     final DateTime? birthday;
     final dynamic deathday;
     final int gender;
@@ -28,7 +28,7 @@ class PersonRespose {
         required this.adult,
         required this.alsoKnownAs,
         required this.biography,
-        required this.birthday,
+        this.birthday,
         this.deathday,
         required this.gender,
         this.homepage,
@@ -45,7 +45,7 @@ class PersonRespose {
         adult: json["adult"],
         alsoKnownAs: List<String>.from(json["also_known_as"].map((x) => x)),
         biography: json["biography"],
-        birthday: DateTime.parse(json["birthday"]),
+        birthday: json["birthday"] == null ? null : DateTime.parse(json["birthday"]),
         deathday: json["deathday"],
         gender: json["gender"],
         homepage: json["homepage"],
