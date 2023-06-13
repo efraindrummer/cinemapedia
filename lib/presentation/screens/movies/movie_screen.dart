@@ -180,7 +180,7 @@ class _ActorsByMovie extends ConsumerWidget {
                       fit: BoxFit.cover,
                       loadingBuilder: (context, child, loadingProgress) {
                         return GestureDetector(
-                          onTap: () => context.push('/person/${actor.id}'),
+                          onTap: () => context.push('/home/0/person/${actor.id}'),
                           child: FadeInRight(child: child)
                         );
                       },
