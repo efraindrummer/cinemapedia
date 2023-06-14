@@ -50,7 +50,8 @@ class PersonRespose {
         gender: json["gender"],
         homepage: json["homepage"],
         id: json["id"],
-        imdbId: json["imdb_id"],
+        // ignore: prefer_if_null_operators
+        imdbId: json["imdb_id"] == null ? 'no hay' : json["imdb_id"],
         knownForDepartment: json["known_for_department"],
         name: json["name"],
         placeOfBirth: json["place_of_birth"],
