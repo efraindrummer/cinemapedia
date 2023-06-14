@@ -17,7 +17,7 @@ class IsarDatasource extends LocalStorageDatasource {
     final dir = await getApplicationDocumentsDirectory();
     
     if (Isar.instanceNames.isEmpty){
-      return await Isar.open([MovieSchema], inspector: true, directory: dir.path );
+      return await Isar.open([MovieSchema], directory: dir.path, inspector: true);
     }
 
     return Future.value(Isar.getInstance());
@@ -46,11 +46,11 @@ class IsarDatasource extends LocalStorageDatasource {
 
     if(favoriteMovie != null){
       //borrar
-      isar.writeTxnSync(() => isar.movies.putSync(movie));
+      isar.writeTxnSync(() => isar.movies.deleteSync(favoriteMovie.isarId!));
       return;
     }
     //insertar
-    return isar.writeTxnSync(() => isar.movies.deleteSync(favoriteMovie!.isarId!));
+    return isar.writeTxnSync(() => isar.movies.putSync(movie));
   }
 
   @override
