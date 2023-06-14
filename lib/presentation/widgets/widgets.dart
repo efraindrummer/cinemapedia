@@ -3,3 +3,5 @@ export 'package:cinemapedia/presentation/widgets/movies/movie_horizontal_listvie
 export 'shared/custom_bottom_navigationbar.dart';
 export 'shared/custom_appbar.dart';
 export 'movies/movies_slideshow.dart';
+export 'movies/movie_mansonry.dart';
+export 'movies/movie_poster_link.dart';
