@@ -45,7 +45,7 @@ class PersonRespose {
         adult: json["adult"],
         alsoKnownAs: List<String>.from(json["also_known_as"].map((x) => x)),
         biography: json["biography"],
-        birthday: json["birthday"] ?? "",
+        birthday: json["birthday"] == null ? null : DateTime.parse(json["birthday"]),
         deathday: json["deathday"],
         gender: json["gender"],
         homepage: json["homepage"],
