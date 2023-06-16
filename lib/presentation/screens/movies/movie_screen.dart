@@ -2,6 +2,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:cinemapedia/domain/entities/movie.dart';
 import 'package:cinemapedia/presentation/providers/providers.dart';
 import 'package:cinemapedia/presentation/widgets/videos/videos_from_movies.dart';
+import 'package:cinemapedia/presentation/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -83,6 +84,8 @@ class _MovieDetails extends StatelessWidget {
         _ActorsByMovie(movieId: movie.id.toString()),
         //Videos
         VideosFromMovie(movieId: movie.id),
+
+        SimilarMovies(movieId: movie.id),
 
         const SizedBox(height: 50,)
       ],
