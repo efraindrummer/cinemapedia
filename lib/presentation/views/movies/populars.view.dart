@@ -9,18 +9,17 @@ class PopularsView extends ConsumerStatefulWidget {
   PopularsViewState createState() => PopularsViewState();
 }
 
-class PopularsViewState extends ConsumerState<PopularsView> {
-
-  @override
-  void initState() {
-    super.initState();
-    ref.read(popularMoviesProvider.notifier).loadNextPage();
-  }
+class PopularsViewState extends ConsumerState<PopularsView> with AutomaticKeepAliveClientMixin {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
 
     final popularMovies = ref.watch(popularMoviesProvider);
+
+    if ( popularMovies.isEmpty ) {
+      return const Center(child: CircularProgressIndicator(strokeWidth: 2));
+    }
 
     return Scaffold(
       body: MovieMasonry(
@@ -31,4 +30,7 @@ class PopularsViewState extends ConsumerState<PopularsView> {
       ),
     );
   }
+  
+  @override
+  bool get wantKeepAlive => true;
 }
