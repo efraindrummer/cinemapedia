@@ -1,2 +1,3 @@
 export 'movies/favorites_view.dart';
+export 'movies/populars.view.dart';
 export 'movies/home_view.dart';

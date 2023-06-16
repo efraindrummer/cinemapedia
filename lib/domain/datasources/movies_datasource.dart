@@ -1,4 +1,5 @@
 import 'package:cinemapedia/domain/entities/movie.dart';
+import 'package:cinemapedia/domain/entities/video.dart';
 
 abstract class MoviesDatasource {
 
@@ -13,4 +14,9 @@ abstract class MoviesDatasource {
   Future<Movie> getMovieById(String id);
 
   Future<List<Movie>> searchMovies(String query);
+
+  Future<List<Movie>> getSimilarMovies(int movieId);
+
+  Future<List<Video>> getYoutubeVideosById(int movieId);
+
 }
